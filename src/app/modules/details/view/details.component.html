@@ -1,0 +1,52 @@
+<div class="jumbotron text-center bg-purple br-0" id="jumbotron">
+    <div>
+        <h1 class="jumbotron-heading font-green"> {{getGoopName()}}</h1>
+        <p class="lead font-white"> {{getGoopType()}} Goop</p>
+    </div>
+    <hr class="my-4 bg-white">
+    <div class="font-white">
+        <p class="lead font-white"> {{getGoopIRI()}}</p>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-default text-center">
+        <img class="images" [src]="getGoopURL()" />
+    </div>
+    <hr class="my-4 bg-purple">
+    <div class="row">
+    <div class="col-md-6" *ngIf="getGoopClasses()">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Class</th>
+                    <th class="text-center" scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let class of getGoopClasses(); index as i">
+                    <td>{{ class }}</td>
+                    <td class="text-center"> - </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6" *ngIf="getGoopProperties()">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">Object Property</th>
+                    <th class="text-center" scope="col">Domain</th>
+                    <th class="text-center" scope="col">Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let property of getGoopProperties(); index as i">
+                    <td>{{ property }}</td>
+                    <td class="text-center"> - </td>
+                    <td class="text-center"> - </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

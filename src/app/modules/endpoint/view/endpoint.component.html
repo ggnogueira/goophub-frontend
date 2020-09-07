@@ -1,0 +1,42 @@
+<div class="jumbotron text-center bg-purple br-0" id="jumbotron">
+    <div class="container">
+        <h1 class="jumbotron-heading font-green">SPARQL Query Interface</h1>
+        <p class="lead font-white">
+            This interface permits queries to be made over the GO-FOR documents held within this repository, using the
+            <a class="font-green" href="http://www.w3.org/TR/rdf-sparql-query/" target="_blank">SPARQL Query
+                Language</a>.
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ngx-codemirror class="border"
+            [(ngModel)]="query" 
+            [options]="{
+                    lineNumbers: true,
+                    theme: 'dracula',
+                    mode: 'sparql'
+                }">
+            </ngx-codemirror>
+            <br>
+            <button class="btn btn-outline-success" (click)="search()" type="button">Search</button>
+            <button class="btn btn-outline-dark float-right" (click)="clear()" type="button">Clear</button>
+        </div>
+    </div>
+    <div *ngIf="isValid" class="panel panel-default mt-4">
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-responsive">
+                <thead class="text-center">
+                    <th *ngFor="let key of queryKeys(result2)">{{ key }}</th>
+                </thead>
+                <tbody class="text-left">
+                    <tr *ngFor="let item of result">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

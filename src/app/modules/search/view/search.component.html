@@ -1,0 +1,44 @@
+<div class="container">
+    <h1 class="display-1 text-center font-green mb-10 mt-20">GoopHub</h1>
+    <form class="form-group">
+        <input class="form-control" [(ngModel)]="query" type="search" placeholder="Search for Goops..." name="query">
+        <div class="search-buttons text-center mt-2" id="search-buttons">
+            <button type="button" class="btn btn-outline-success mr-3" (click)="search()">Search</button>
+            <a class="btn btn-outline-dark" (click)="advancedSearch()">Advanced Search</a>
+        </div>
+    </form>
+
+    <div *ngIf="emptyQuery" class="mb-10 mt-50">
+        <div class="alert alert-warning" role="alert">
+            Your search - <strong>{{ query }}</strong> - did not match any goop.
+            <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div  class="card-deck mb-10 mt-50">
+        <div *ngFor="let item of result?.goops">
+            <div class="card mb-3 max-w-18 shadow p-3 mb-5 bg-white rounded goop-card">
+                <div class="card-header bg-white text-center">{{ item.type }}</div>
+                <div class="card-body text-dark text-center">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                </div>
+                <div class="btn-group-sm text-center mb-2">
+                    <button type="button" class="btn btn-sm btn-outline-success mr-2"
+                        (click)="navigate2details(item)">Show</button>
+                    <button type="button" class="btn btn-sm btn-outline-success">Download</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+    <div class="text-center">
+        Copyright © 2019
+        &middot; <a class="font-green" href="https://nemo.inf.ufes.br/" target="_blank">Nemo</a>
+        &middot; <a class="font-green" href="https://github.com/nemo-ufes/goophub" target="_blank">Github</a>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="jumbotron text-center bg-purple br-0">
+    <div class="container">
+        <h1 class="jumbotron-heading font-green">GOOP Upload</h1>
+        <p class="lead font-white">
+            Here you can upload your OWL GOOP files.
+        </p>
+    </div>
+</div>
+<div class="container">
+    <ngb-tabset>
+        <ngb-tab title="Complex Goal">
+            <ng-template ngbTabContent>
+                <div class="card card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="name-field">Name:</label>
+                                <input type="name" name="complexName" [(ngModel)]="complexName" class="form-control"
+                                    id="name-field" placeholder="Your name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="email-field">Email:</label>
+                                <input type="email" name="complexEmail" [(ngModel)]="complexEmail" class="form-control"
+                                    id="email-field" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="organization-field">Organization Name:</label>
+                                <input type="text" name="complexOrganization" [(ngModel)]="complexOrganization"
+                                    class="form-control" id="organization-field"
+                                    placeholder="Federal University of ...">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="role-field">Role:</label>
+                                <input type="text" name="complexRole" [(ngModel)]="complexRole" class="form-control"
+                                    id="role-field" placeholder="Researcher, Ontology Engineer, Student">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="goalName">Goal:</label>
+                                <div class="input-group mb-4">
+                                    <input type="text" name="complexGoal" [(ngModel)]="complexGoal" class="form-control"
+                                        id="goalName" placeholder="Goal Name" aria-label="Search for goals"
+                                        aria-describedby="button-addon2">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="goalDecomposition">Goal Decomposition Type:</label>
+                                <select name="complexDecomposition" [(ngModel)]="complexDecomposition"
+                                    class="form-control" id="goalDecomposition">
+                                    <option>AND decomposition</option>
+                                    <option>OR decomposition</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="queryValue">Search goals to add:</label>
+                                <div class="input-group mb-4">
+                                    <input type="text" class="form-control" id="queryValue"
+                                        placeholder="Search for goals" aria-label="Search for goals"
+                                        aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success" type="button"
+                                            (click)="search()">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div id="col-dep">
+                                    <label class="font-weight-bold">Selected goals:</label>
+                                    <strong></strong>
+                                    <div class="list-group" id="complex-list-added" role="tablist">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group col-md-4" id="complex-list-to-add" style="margin-top: -35px;">
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="goalName">Select OWL file:</label>
+                                <input (change)="onComplexFileChange($event)" type="file" id="complexFileUpload">
+                            </div>
+                            <div class="form-group col-md-6">
+                                    <label class="font-weight-bold" for="goalName">Select image file:</label>
+                                    <input (change)="onComplexImageChange($event)" type="file" id="complexImageUpload">
+                            </div>
+                        </div>
+                        <div class="loading-row">
+                            <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+                            <ngb-alert *ngIf="warningMessage" type="warning" (close)="warningMessage = ''">{{ warningMessage }}</ngb-alert>
+                        </div>
+                        <div class="text-center mt-50">
+                            <p>
+                                <button type="submit" class="btn btn-outline-success"
+                                (click)="complexUpload()">Upload fragment</button>  
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Atomic Goal">
+            <ng-template ngbTabContent>
+                <div class="card card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="atomic-name-field">Name:</label>
+                                <input type="name" name="atomicName" [(ngModel)]="atomicName" class="form-control"
+                                    id="atomic-name-field" placeholder="Your name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="atomic-email-field">Email:</label>
+                                <input type="email" name="atomicEmail" [(ngModel)]="atomicEmail" class="form-control"
+                                    id="atomic-email-field" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="atomic-organization-field">Organization
+                                    Name:</label>
+                                <input type="text" name="atomicOrganization" [(ngModel)]="atomicOrganization"
+                                    class="form-control" id="atomic-organization-field"
+                                    placeholder="Federal University of ...">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="atomic-role-field">Role:</label>
+                                <input type="text" name="atomicRole" [(ngModel)]="atomicRole" class="form-control"
+                                    id="atomic-role-field" placeholder="Researcher, Ontology Engineer, Student">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bold" for="atomic-queryValue">Goal:</label>
+                                <div class="input-group mb-4">
+                                    <input type="text" name="atomicGoal" [(ngModel)]="atomicGoal" class="form-control"
+                                        id="atomic-queryValue" placeholder="Goal Name" aria-label="Search for goals"
+                                        aria-describedby="button-addon2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-bold" for="goalName">Select OWL file:</label>
+                                    <input (change)="onAtomicFileChange($event)" type="file" id="atomicFileUpload">
+                                </div>
+                                <div class="form-group col-md-6">
+                                        <label class="font-weight-bold" for="goalName">Select image file:</label>
+                                        <input (change)="onAtomicImageChange($event)" type="file" id="atomicImageUpload">
+                                </div>
+                            </div>
+                            <div class="loading-row">
+                                <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+                                <ngb-alert *ngIf="warningMessage" type="warning" (close)="warningMessage = ''">{{ warningMessage }}</ngb-alert>
+                            </div>
+                            <div class="text-center mt-50">
+                                <p>
+                                    <button type="submit" class="btn btn-outline-success"
+                                    (click)="atomicUpload()" id="atomic-upload">Upload fragment</button>  
+                                </p>
+                            </div>
+                    </form>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>

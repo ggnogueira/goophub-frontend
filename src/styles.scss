@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    background: #F4F5FA !important;
+}
+
+// Borda
+.br-0 {
+    border-radius: 0 !important;
+}
+
+// Margins
+.m-auto {
+    margin: auto !important;
+}
+.ml-20 {
+    margin-left: 20%;
+}
+
+.ml-45 {
+    margin-left: 45%;
+}
+
+.mb-10 {
+    margin-bottom: 10%;
+}
+
+.mt-20 {
+    margin-top: 20%;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+// Cor da Fonte
+.font-green {
+    color:#5BC491;
+}
+
+.font-white {
+    color: white !important;
+}
+
+// Tamanho da Fonte
+.font-size-small {
+    font-size: xx-small;
+}
+
+// Background Color
+.bg-purple {
+    background: #251D35;
+}
+
+.bg-green {
+    background-color: #5BC491;
+}
+
+.border-color-green {
+    border-color: #5BC491;
+}
+
+.google-translate-color {
+ background: #AEE4FC;
+}
+
+.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {
+    background-color: #251D35 !important;
+}
+
+.nav-link {
+    color: #495057 !important;
+}
+
+.nav-link.active {
+    color: #5BC491 !important;
+}
